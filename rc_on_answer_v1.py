@@ -43,7 +43,7 @@ last_name = ''
 
 # conditional variables for testing or live
 if test:
-    incoming_full_name = "POD 2 - San Diego & Desert Wave Regions - SAN FRANCISCO N"
+    incoming_full_name = "POD 2 - San Diego & Desert Wave Regions - Country Hills Post Acute Director of Staff Development Asst."
     incoming_phone_number = '987654321'
     incoming_first_name = 'First'
     incoming_last_name = 'Last'
@@ -516,6 +516,7 @@ def get_departments_and_domain():
     global all_department_ids
     global all_primary_domain
     all_domains.insert(0,'pacsne.com')
+    all_domains.insert(0,'guestsso.com')
     all_department_names = all_departments
     all_department_ids = all_dept_ids
     all_primary_domain = all_domains
@@ -671,8 +672,11 @@ incoming_phone_number_text.grid(row=1, column=1, sticky="e")
 # Full name label and display
 full_name_label = ttk.Label(content_frame, text="Full Name:")
 full_name_label.grid(row=2, column=0, sticky="w")
-full_name_text = ttk.Label(content_frame, text=f"{incoming_first_name} {incoming_last_name}")
-full_name_text.grid(row=2, column=0, columnspan=3)
+if test:
+    full_name_text = ttk.Label(content_frame, text=f"{incoming_full_name}")
+else:
+    full_name_text = ttk.Label(content_frame, text=f"{incoming_first_name} {incoming_last_name}")
+full_name_text.grid(row=2, column=0, columnspan=4)
 full_name_text.lower() # send to back
 
 # override set the upn text box
