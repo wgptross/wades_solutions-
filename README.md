@@ -1,0 +1,45 @@
+# RC/FS Enhanced Call App
+
+This application is a tool designed to streamline the process of creating and managing Freshservice tickets for
+    incoming calls at PACS. It provides a user-friendly GUI built with Tkinter, allowing agents to quickly capture call
+    details, add notes, and update ticket properties without requiring any interaction with the ticket tool.
+
+## The Why
+10/26/24
+I have been working with PACS since 01/02/24 and in my time here I have been trying to create the most efficient way
+    to do my job.I noticed a lot of time being wasted just to create, note and close ticket that were being called in.
+    I started this project as a personal tool but then I soon noticed the impact it could have on the team. From what
+    I have seen the average agent receives ~12 calls a day. Manually creating a ticket for this call, noting and setting
+    the properties to correct values takes ~40 seconds a call. It also doesnt guarantee that the ticket had the proper
+    "ticket Hygiene" standard for PACS Support. Using the manual method the agents would spend ~3 hours a month just
+    creating a ticket and ~50/50 on proper ticket Hygiene. With this tool, the agent creates a ticket by answering the
+    call, notes and edits ticket properties while helping the end user. They then can action on the ticket by clicking
+    a button. I.e close the ticket. The tool then forces the required ticket hygiene standard and cuts down the time
+    spent creating tickets to less <20 minutes per month. That is 10x or 90% increase in efficiency on time and 100%
+    on ticket hygiene. The tool also will guarantee that all call incidents will be accounted for thus improving all
+    overall stats and efficiency in all agents.
+
+## Features
+
+* **Automated Ticket Creation:** Automatically generates a new Freshservice ticket with pre-filled information based on
+    incoming call details.
+* **Timer Integration:** Starts a timer on ticket creation to track call handling time.
+* **Customizable Fields:** Allows agents to override default values for phone number, full name, and email.
+* **Issue Type Selection:** Provides a selection of common issue types to categorize the ticket accurately.
+* **Facility and Domain Lookup:** Includes dropdown lists to easily select the appropriate facility and email domain for
+    the requester.
+* **Detailed Notes:** Enables agents to record comprehensive notes regarding the call.
+* **Multiple Submission Options:** Offers different submission actions:
+    * **Submit/Continue:** Updates the ticket with gathered information and keeps it open and timer running.
+    * **Submit/Hold:**  Updates the ticket, places it on hold, and requires a reason for the hold.
+    * **Submit/Close:** Updates the ticket and marks it as resolved.
+    * **Transfer to EHR:**  Closes and Notes the ticket to the EHR department if it's not IT-related.
+* **Draggable Window:** The application window can be easily moved around the screen.
+
+## Prerequisites
+
+* **Python 3.12:** Ensure you have Python 3.12 installed on your system.
+* **Required Packages:** Install the necessary Python packages using `pip`:
+  ```bash in the active virtual env.
+  pip install -r requirements.txt
+* **Remove all global interpreters and configure interpreter in the virtual env
