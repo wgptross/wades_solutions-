@@ -1,9 +1,5 @@
 #!/usr/bin/env python3.12
 test = True
-# to-do list for version 1 ################
-#TODO:                                    #
-# find a way to update the app            #
-###########################################
 
 import sys
 import os
@@ -645,7 +641,7 @@ icon_label.image = icon_photo
 icon_label.grid(row=0, column=0, padx=5, pady=5)
 
 # Title label
-title_label = ttk.Label(title_bar, text="RC/FS Enhanced Call App",
+title_label = ttk.Label(title_bar, text=f"RC/FS Enhanced Call App -- Version: {__version__}",
                         font=("Helvetica", 14, "bold"), background='Purple', foreground='white')
 title_label.grid(row=0, column=1, padx=10, pady=5)
 
