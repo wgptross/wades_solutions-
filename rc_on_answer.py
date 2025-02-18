@@ -13,11 +13,22 @@ import datetime
 import tkinter as tk
 from tkinter import messagebox, ttk
 from PIL import Image, ImageTk
+from updater import check_and_update
 
 # API Key
 api_key = os.environ.get('fs_api_key')
 if not api_key:
     raise ValueError("fs_api_key environment variable not set.")
+
+# group_id
+fs_group_id = os.environ.get('fs_group_id')
+if not fs_group_id:
+    raise ValueError("fs_group_id environment variable not set.")
+
+# responder_id
+fs_responder_id = os.environ.get('fs_responder_id')
+if not fs_responder_id:
+    raise ValueError("fs_responder_id environment variable not set.")
 
 # global vars
 global override_number
@@ -25,8 +36,8 @@ global override_number
 # Variables
 base_url = 'https://pacs.freshservice.com'
 api_password = 'x'
-group_id = 21000562401
-responder_id = 21002944650
+group_id = int(fs_group_id)
+responder_id = int(fs_responder_id)
 email = 'phone_call@email.com'
 line_break = "\n"
 issue_type = "Other"
@@ -331,7 +342,7 @@ def submit_and_continue(body):
             error_message = f"Error updating ticket or submitting note: {str(e)}"
         messagebox.showerror("Error", error_message)
 
-# Submit/close function, Submits all notes and adjustments to the ticket and closes the ticket out (unfinished)
+# Submit/close function, Submits all notes and adjustments to the ticket and closes the ticket out
 def submit_and_close(body):
     # run phone number override function
     phone_number_override()
@@ -612,7 +623,7 @@ root.geometry('605x405')
 root.overrideredirect(True) # removes default title bar
 root.configure(background='purple', cursor='hand2')
 
-# Make the GUI stay on to
+# Make the GUI stay on top
 root.attributes('-topmost', True)
 
 # Style for themed widgets
@@ -627,7 +638,7 @@ title_bar.grid(row=0, column=0, columnspan=2, sticky="ew")
 radio_style.configure('Titlebar.TFrame', background='Purple')
 
 # Load and display the icon
-icon_image = Image.open("C:\\Logan's Solutions\\Images\\PACS_logo_RC-FS.png")
+icon_image = Image.open("C:\\Users\\logan.fryer\\PycharmProjects\\logans_solutions\\Images\\PACS_logo_RC-FS.png")
 icon_photo = ImageTk.PhotoImage(icon_image.resize((115, 34)))
 icon_label = tk.Label(title_bar, image=icon_photo)
 icon_label.image = icon_photo
@@ -798,3 +809,6 @@ root.grid_columnconfigure(0, weight=1)
 if not test:
     start_timer(ticket_number)
 root.mainloop()
+
+# check and update version
+check_and_update()
