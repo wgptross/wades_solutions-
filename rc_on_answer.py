@@ -17,17 +17,23 @@ if not api_key:
     raise ValueError("fs_api_key environment variable not set.")
 
 # group_id
-fs_group_id = os.environ.get('fs_group_id')
+fs_group_id = 21000562404 #os.environ.get('fs_group_id')
 if not fs_group_id:
     raise ValueError("fs_group_id environment variable not set.")
 
 # responder_id
-fs_responder_id = os.environ.get('fs_responder_id')
+fs_responder_id = 21003746754 #os.environ.get('fs_responder_id')
 if not fs_responder_id:
     raise ValueError("fs_responder_id environment variable not set.")
 
 # global vars
 global override_number
+
+#testing version while 
+__version__ = "1.0.0"
+
+
+
 
 # Variables
 base_url = 'https://pacs.freshservice.com'
@@ -54,7 +60,7 @@ if test:
     incoming_phone_number = '987654321'
     incoming_first_name = 'First'
     incoming_last_name = 'Last'
-    ticket_number = "567661"
+    ticket_number = "987176"
 else:
     incoming_full_name = sys.argv[1]
     incoming_phone_number = sys.argv[2]
@@ -617,32 +623,33 @@ root = tk.Tk()
 root.title("RC/FS Call Tool")
 root.geometry('605x405')
 root.overrideredirect(True) # removes default title bar
-root.configure(background='purple', cursor='hand2')
+root.configure(background='black', cursor='hand2')
 
 # Make the GUI stay on top
 root.attributes('-topmost', True)
 
 # Style for themed widgets
 radio_style = ttk.Style()
-radio_style.theme_use('classic')
+radio_style.theme_use('default')
 
 # Create the title bar
 title_bar = ttk.Frame(root, style='Titlebar.TFrame')
 title_bar.grid(row=0, column=0, columnspan=2, sticky="ew")
 
 # Configure the title bar style
-radio_style.configure('Titlebar.TFrame', background='Purple')
+radio_style.configure('Titlebar.TFrame', background='black')
 
 # Load and display the icon
-icon_image = Image.open("C:\\Users\\logan.fryer\\PycharmProjects\\logans_solutions\\Images\\PACS_logo_RC-FS.png")
+icon_image = Image.open(".\Images\\PACS_logo_RC-FS.png")
 icon_photo = ImageTk.PhotoImage(icon_image.resize((115, 34)))
 icon_label = tk.Label(title_bar, image=icon_photo)
+icon_label.configure(background="black")
 icon_label.image = icon_photo
 icon_label.grid(row=0, column=0, padx=5, pady=5)
 
 # Title label
-title_label = ttk.Label(title_bar, text=f"RC/FS Enhanced Call App -- Version: {__version__}",
-                        font=("Helvetica", 14, "bold"), background='Purple', foreground='white')
+title_label = ttk.Label(title_bar, text=f"RC Call App -- Version: {__version__}",
+                        font=("Helvetica", 14, "bold"), background='black', foreground='white')
 title_label.grid(row=0, column=1, padx=10, pady=5)
 
 # Bind to the title bar
@@ -659,7 +666,7 @@ icon_label.bind("<B1-Motion>", move_window)
 
 # Main content area
 content_frame = ttk.Frame(root, padding=10)
-content_frame.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+content_frame.grid(row=5, column=0, columnspan=2, padx=5, pady=10, sticky="nsew")
 
 # Ticket number label and display
 ticket_number_label = ttk.Label(content_frame, text="Ticket Number:")
