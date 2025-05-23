@@ -615,15 +615,29 @@ def update_requester_email():
     except requests.exceptions.RequestException as e:
         messagebox.showerror("Error", f"Error creating ticket: {str(e)}\n{response.text}")
 
+# kill program function
+
+
+
 # Fetch departments and extract names
 all_departments = get_departments_and_domain()
 
 # Create the main window
 root = tk.Tk()
 root.title("RC/FS Call Tool")
-root.geometry('605x405')
 root.overrideredirect(True) # removes default title bar
-root.configure(background='black', cursor='hand2')
+root.configure(cursor='hand2')
+
+# grids for testing UI stuff
+
+for i in range(10): 
+    root.grid_rowconfigure(i, weight=1)
+    root.grid_columnconfigure(i, weight=1)
+
+## kill program function
+
+def quit_program():
+    root.destroy()
 
 # Make the GUI stay on top
 root.attributes('-topmost', True)
@@ -634,22 +648,22 @@ radio_style.theme_use('default')
 
 # Create the title bar
 title_bar = ttk.Frame(root, style='Titlebar.TFrame')
-title_bar.grid(row=0, column=0, columnspan=2, sticky="ew")
+title_bar.grid(row=0, column=0, columnspan=5, sticky="ew")
 
 # Configure the title bar style
-radio_style.configure('Titlebar.TFrame', background='black')
+radio_style.configure('Titlebar.TFrame')
 
 # Load and display the icon
 icon_image = Image.open(".\Images\\PACS_logo_RC-FS.png")
 icon_photo = ImageTk.PhotoImage(icon_image.resize((115, 34)))
 icon_label = tk.Label(title_bar, image=icon_photo)
-icon_label.configure(background="black")
+
 icon_label.image = icon_photo
 icon_label.grid(row=0, column=0, padx=5, pady=5)
 
 # Title label
 title_label = ttk.Label(title_bar, text=f"RC Call App -- Version: {__version__}",
-                        font=("Helvetica", 14, "bold"), background='black', foreground='white')
+                        font=("Helvetica", 14, "bold"), foreground='white')
 title_label.grid(row=0, column=1, padx=10, pady=5)
 
 # Bind to the title bar
@@ -736,6 +750,14 @@ issue_type_label.grid(row=3, rowspan=2, column=3, columnspan=2, sticky="n")
 ###############
 
 # Submit/Continue button
+
+#testing close feature
+
+close_program = ttk.Button(title_bar, text="close", command=quit_program)
+close_program.grid(row=0, column=4, columnspan=5, pady=10)
+
+
+
 submit_and_Continue_button = ttk.Button(content_frame, text="Submit/Continue",
                                         command=lambda: submit_and_continue(notes_text.get('1.0', tk.END)))
 submit_and_Continue_button.grid(row=5, column=1, columnspan=1, pady=10)
